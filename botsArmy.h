@@ -7,6 +7,7 @@ class botsArmyInterface
 	virtual void attack(std::string target) = 0;
 	virtual void move(int x, int y) = 0;
 	virtual void getInfo() = 0;
+	virtual void beAttacked(int damage) = 0;
 };
 
 class botsArmy : public botsArmyInterface
