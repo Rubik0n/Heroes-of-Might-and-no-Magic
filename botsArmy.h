@@ -4,7 +4,7 @@
 
 class botsArmyInterface
 {
-	virtual void attack(std::string target) = 0;
+	virtual void attack() = 0;
 	virtual void move(int x, int y) = 0;
 	virtual void getInfo() = 0;
 	virtual void beAttacked(int damage) = 0;
@@ -169,7 +169,7 @@ public:
 		this->y = y;
 	}
 
-	void attack(std::string target)
+	void attack()
 	{
 
 		return;
@@ -201,7 +201,7 @@ public:
 		this->y = y;
 	}
 
-	void attack(std::string target)
+	void attack()
 	{
 
 		return;
@@ -231,7 +231,7 @@ public:
 		this->y = y;
 	}
 
-	void attack(std::string target)
+	void attack()
 	{
 
 		return;

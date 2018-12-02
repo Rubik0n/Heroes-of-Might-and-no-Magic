@@ -17,29 +17,29 @@ void play()
 	buttleField field;
 	int number, x, y;
 
-	// Позиция Лучников
+	// Archers' position
 	x = 1;
 	y = 8;
 	archers Archers(x, y);
 	field.cellFiller(Archers.getAbbreviation(), x, y);
 
-	// Позиция Гномов
+	// Dwarfs' position
 	x = 2;
 	y = 8;
 	dwarfs Dwarfs(x, y);
 	field.cellFiller(Dwarfs.getAbbreviation(), x, y);
 
-	// Позиция Кентавров
+	// Centaurs' position
 	x = 3;
 	y = 8;
 	centaurs Centaurs(x, y);
 	field.cellFiller(Centaurs.getAbbreviation(), x, y);
 
-	// Выбор позиции Вампиров
+	// Choosing Vampires' position
 	field.printButtleField();
 	while (true)
 	{
-		std::cout << "Кол-во Vampire Lords: ";
+		std::cout << "Number of Vampire Lords: ";
 		std::cin >> number;
 		if (number > 0)
 			break;
@@ -47,14 +47,14 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Должен быть хотя бы один юнит!\n";			
+			std::cout << "One unit is necessary at least!\n";			
 		}
 	}
 	while (true)
 	{
-		std::cout << "Строка позиции:       ";
+		std::cout << "X position: ";
 		std::cin >> x;
-		std::cout << "Столбец позиции:      ";
+		std::cout << "Y position: ";
 		std::cin >> y;
 		if (field.cellFiller('V', x, y))
 			break;
@@ -62,18 +62,18 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Кол-во Vampire Lords: " << number << std::endl;
-			std::cout << "Выберете другую позицию!\n";
+			std::cout << "Number of Vampire Lords: " << number << std::endl;
+			std::cout << "Choose another position!\n";
 		}
 	}
 	vampireLords Vampires(number, x, y);
 	system("cls");
 
-	// Выбор позиции Личей
+	// Choosing Lichs' position
 	field.printButtleField();
 	while (true)
 	{
-		std::cout << "Кол-во Lichs:    ";
+		std::cout << "Number of Lichs: ";
 		std::cin >> number;
 		if (number > 0)
 			break;
@@ -81,14 +81,14 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Должен быть хотя бы один юнит!\n";
+			std::cout << "One unit is necessary at least!\n";
 		}
 	}
 	while (true)
 	{
-		std::cout << "Строка позиции:  ";
+		std::cout << "X position: ";
 		std::cin >> x;
-		std::cout << "Столбец позиции: ";
+		std::cout << "Y position: ";
 		std::cin >> y;
 		if (field.cellFiller('L', x, y))
 			break;
@@ -96,18 +96,18 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Кол-во Lichs:    " << number << std::endl;
-			std::cout << "Выберете другую позицию!\n";
+			std::cout << "Number of Lichs:    " << number << std::endl;
+			std::cout << "Choose another position!\n";
 		}
 	}
 	lichs Lichs(number, x, y);
 	system("cls");
 
-	// Выбор позиции Скелетов
+	// Choosing Skeletons' position
 	field.printButtleField();
 	while (true)
 	{
-		std::cout << "Кол-во Skeletons: ";
+		std::cout << "Number of Skeletons: ";
 		std::cin >> number;
 		if (number > 0)
 			break;
@@ -115,14 +115,14 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Должен быть хотя бы один юнит!\n";
+			std::cout << "One unit is necessary at least!\n";
 		}
 	}
 	while (true)
 	{
-		std::cout << "Строка позиции:   ";
+		std::cout << "X position: ";
 		std::cin >> x;
-		std::cout << "Столбец позиции:  ";
+		std::cout << "Y position: ";
 		std::cin >> y;
 		if (field.cellFiller('S', x, y))
 			break;
@@ -130,14 +130,14 @@ void play()
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Кол-во Skeletons: " << number << std::endl;
-			std::cout << "Выберете другую позицию!\n";
+			std::cout << "Number of Skeletons: " << number << std::endl;
+			std::cout << "Choose another position!\n";
 		}
 	}
 	skeletons Skelets(number, x, y);
 	system("cls");
 	
-	// Информация после расставления войск
+	// After placing information
 	field.printButtleField();
 	Vampires.getInfo();
 	Lichs.getInfo();
@@ -149,63 +149,24 @@ void play()
 	system("cls");
 
 
-	// Ходы 
+	// Courses
 	int action;
 	while ((!Vampires.isDead() || !Lichs.isDead() || !Skelets.isDead()) &&
 		(!Archers.isDead() || !Centaurs.isDead() || !Dwarfs.isDead()))
 	{
-		// Ход Вампир Лордов
+		// Vampire Lords' course
 		if (!Vampires.isDead())
 		{
 			system("cls");
 			field.printButtleField();
-			std::cout << "Ход Vampire Lords!\n";
+			std::cout << "Vampire Lords' course!\n";
 			Vampires.getInfo();
-
+					
 			
-			
-
-			//есть ли рядом вражеские отряды
-			/*if (
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() - 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() - 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() - 1) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY()) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY()) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY()) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() + 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() + 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() - 1, Vampires.getY() + 1) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX(), Vampires.getY() - 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX(), Vampires.getY() - 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX(), Vampires.getY() - 1) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX(), Vampires.getY() + 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX(), Vampires.getY() + 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX(), Vampires.getY() + 1) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() - 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() - 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() - 1) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY()) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY()) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY()) == Dwarfs.getAbbreviation() ||
-
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() + 1) == Archers.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() + 1) == Centaurs.getAbbreviation() ||
-				field.cellInfo(Vampires.getX() + 1, Vampires.getY() + 1) == Dwarfs.getAbbreviation()
-				)*/
-			
-			
-			
-			std::cout << "Выберете действие:\n";
-			std::cout << "1 - Атаковать\n";
-			std::cout << "2 - Поменять позицию\n";
-			std::cout << "3 - Остаться на месте\n";
+			std::cout << "Choose the action:\n";
+			std::cout << "1 - Attack\n";
+			std::cout << "2 - Change the position\n";
+			std::cout << "3 - Wait\n";
 
 			while (true)
 			{
@@ -219,11 +180,11 @@ void play()
 					system("cls");
 					field.printButtleField();
 					Vampires.getInfo();
-					std::cout << "Неизвестная команда! Повторите ввод!\n";
-					std::cout << "Выберете действие:\n";
-					std::cout << "1 - Атаковать\n";
-					std::cout << "2 - Поменять позицию\n";
-					std::cout << "3 - Остаться на месте\n";
+					std::cout << "Unknown command! Repeat!\n";
+					std::cout << "Choose the action:\n";
+					std::cout << "1 - Attack\n";
+					std::cout << "2 - Change the position\n";
+					std::cout << "3 - Wait\n";
 					
 				}
 			}
@@ -231,9 +192,9 @@ void play()
 
 			switch (action)
 			{
-				case 1:				// атаковать
+				case 1:				// attack
 				{
-					// есть ли рядом лучники
+					// whether Archers are near
 					bool canAttackArchers = false;
 					for (int i = -1; i <= 1; i++)
 						for (int j = -1; j <= 1; j++)
@@ -245,7 +206,7 @@ void play()
 							}
 						}
 
-					// есть ли рядом кентавры
+					// whether Centaurs are near
 					bool canAttackCentaurs = false;
 					for (int i = -1; i <= 1; i++)
 						for (int j = -1; j <= 1; j++)
@@ -257,7 +218,7 @@ void play()
 							}
 						}
 
-					// есть ли рядом гномы
+					// whether Dwarfs are near
 					bool canAttackDwarfs = false;
 					for (int i = -1; i <= 1; i++)
 						for (int j = -1; j <= 1; j++)
@@ -269,28 +230,24 @@ void play()
 							}
 						}
 
-					// если есть кого атаковать
+					// if it's possible to attack someone
 					if (canAttackArchers || canAttackCentaurs || canAttackDwarfs)
 					{
 						system("cls");
 						field.printButtleField();
 						Vampires.getInfo();
-						
-											
-						// есть ли рядом лучники;  если есть - пишим инфу о них
+												
 						if (canAttackArchers)
 							Archers.getInfo();
 												
-						// есть ли рядом кентавры;  если есть - пишим инфу о них
 						if (canAttackCentaurs)
 							Centaurs.getInfo();
 						
-						// есть ли рядом гномы;  если есть - пишим инфу о них
 						if (canAttackDwarfs)
 							Dwarfs.getInfo();
 						
 
-						std::cout << "Выберете, кого атаковать: ";
+						std::cout << "Choose the enemy: ";
 						if (canAttackArchers)
 							std::cout << "Archers ";
 						if (canAttackCentaurs)
@@ -306,7 +263,7 @@ void play()
 							std::cin >> target;
 							if (target == "Archers" || target == "Centaurs" || target == "Dwarfs")
 							{
-								// если цель Archers
+								// if target - Archers
 								if (target == "Archers")										
 								{
 									if (canAttackArchers)
@@ -325,17 +282,17 @@ void play()
 
 										break;
 									}
-									else // если по ошибке ввели имя отряда, который нельзя атаковать
+									else // incorrect choosing
 									{
 										if (Archers.isDead())
-											std::cout << "Archers уже мертвы! Выберете другую цель!\n\n";
+											std::cout << "Archers are dead! Choose another target!\n\n";
 										else
-											std::cout << "Вы не можете атаковать Archers! Выберете другую цель!\n\n";
+											std::cout << "You can't attack Archers! Choose another target!\n\n";
 										continue;
 									}
 								}
 
-								// если цель Centaurs
+								// if target - Centaurs
 								if (target == "Centaurs")
 								{
 									if (canAttackCentaurs)
@@ -354,17 +311,17 @@ void play()
 
 										break;
 									}
-									else // если по ошибке ввели имя отряда, который нельзя атаковать
+									else // incorrect choosing
 									{
 										if (Centaurs.isDead())
-											std::cout << "Centaurs уже мертвы! Выберете другую цель!\n\n";
+											std::cout << "Centaurs are dead! Choose another target!\n\n";
 										else
-											std::cout << "Вы не можете атаковать Centaurs! Выберете другую цель!\n\n";
+											std::cout << "You can't attack Centaurs! Choose another target!\n\n";
 										continue;
 									}
 								}
 
-								// если цель Dwarfs
+								// if target - Dwarfs
 								if (target == "Dwarfs")
 								{
 									if (canAttackDwarfs)
@@ -383,32 +340,33 @@ void play()
 
 										break;
 									}
-									else // если по ошибке ввели имя отряда, который нельзя атаковать
+									else // incorrect choosing
 									{
 										if (Dwarfs.isDead())
-											std::cout << "Dwarfs уже мертвы! Выберете другую цель!\n\n";
+											std::cout << "Dwarfs are dead! Choose another target!\n\n";
 										else
-											std::cout << "Вы не можете атаковать Dwarfs! Выберете другую цель!\n\n";
+											std::cout << "You can't attack Centaurs! Choose another target!\n\n";
 										continue;
 									}
 								}
 							}
 							else
 							{
-								std::cout << "Некорректный ввод!\n";
+								std::cout << "Incorrect input!\n";
 								continue;
 							}
 						}
 					}
 
-					else		// если некого атаковать
+					else		// if Vampires can attack noone
 					{
 						system("cls");
 						field.printButtleField();
 						Vampires.getInfo();
-						std::cout << "Рядом никого нет! Выберете другое действие!\n";
-						std::cout << "1 - Поменять позицию\n";
-						std::cout << "2 - Остаться на месте\n";
+						std::cout << "There is nobody nearby! Choose another action!\n";
+						std::cout << "1 - Change the position\n";
+						std::cout << "2 - Wait\n";
+						
 						int correctAction;
 
 						while (true)
@@ -423,24 +381,24 @@ void play()
 								system("cls");
 								field.printButtleField();
 								Vampires.getInfo();
-								std::cout << "Неизвестная команда! Повторите ввод!\n";
-								std::cout << "1 - Поменять позицию\n";
-								std::cout << "2 - Остаться на месте\n";
+								std::cout << "Unknown command! Repeat!\n";
+								std::cout << "1 - Change the position\n";
+								std::cout << "2 - Wait\n";
 							}
 						}
 
 						switch (correctAction)
 						{
-							case 1:		// поменять позицию
+							case 1:		// change the position
 							{
 								system("cls");
 								field.printButtleField();
 								while (true)
 								{
-									std::cout << "Ход Vampires Lords!\n";
-									std::cout << "Перейти на позицию по X: ";
+									std::cout << "Vampire Lords' course!\n";
+									std::cout << "Change X position: ";
 									std::cin >> x;
-									std::cout << "Перейти на позицию по Y: ";
+									std::cout << "Change Y position: ";
 									std::cin >> y;
 									if (field.cellFiller('V', x, y))
 										break;
@@ -448,7 +406,7 @@ void play()
 									{
 										system("cls");
 										field.printButtleField();
-										std::cout << "Выберете другую позицию!\n";
+										std::cout << "Choose another position!\n";
 									}
 								}
 								field.cellCleaner(Vampires.getX(), Vampires.getY());
@@ -459,7 +417,7 @@ void play()
 
 								break;
 							}
-							case 2:		// остаться на месте
+							case 2:		// wait
 							{
 								Vampires.wait();
 								break;
@@ -471,16 +429,16 @@ void play()
 
 					break;
 				}
-				case 2:		// поменять позицию
+				case 2:		// change the position
 				{
 					
 					field.printButtleField();
 					while (true)
 					{
-						std::cout << "Ход Vampires Lords!\n";
-						std::cout << "Перейти на позицию по X: ";
+						std::cout << "Vampire Lords' course!\n";
+						std::cout << "Change X position: ";
 						std::cin >> x;
-						std::cout << "Перейти на позицию по Y: ";
+						std::cout << "Change Y position: ";
 						std::cin >> y;
 						if (field.cellFiller('V', x, y))
 							break;
@@ -488,7 +446,7 @@ void play()
 						{
 							system("cls");
 							field.printButtleField();
-							std::cout << "Выберете другую позицию!\n";
+							std::cout << "Choose another position!\n";
 						}
 					}
 					field.cellCleaner(Vampires.getX(), Vampires.getY());
@@ -498,7 +456,7 @@ void play()
 
 					break;
 				}
-				case 3:		// остаться на месте
+				case 3:		// wait
 				{
 					Vampires.wait();
 					break;
@@ -511,31 +469,31 @@ void play()
 		}
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// ход Centaurs
+		// Centaurs' course
 		if (!Centaurs.isDead())
 		{
 
 		}
 
-		// ход Lichs
+		// Lichs' course
 		if (!Lichs.isDead())
 		{
 
 		}
 
-		// ход Archers
+		// Archers' course
 		if (!Archers.isDead())
 		{
 
 		}
 
-		// ход Skeletons
+		// Skeletons' course
 		if (!Skelets.isDead())
 		{
 
 		}
 
-		// ход Dwarfs
+		// Dwarfs' course
 		if (!Dwarfs.isDead())
 		{
 
@@ -562,9 +520,9 @@ void play()
 	system("cls");
 	field.printButtleField();
 	if (Archers.isDead() && Centaurs.isDead() && Dwarfs.isDead())
-		std::cout << "Победа!\n";
+		std::cout << "Victory!\n";
 	else
-		std::cout << "Поражение!\n";
+		std::cout << "Defeat!\n";
 
 	return;
 };
