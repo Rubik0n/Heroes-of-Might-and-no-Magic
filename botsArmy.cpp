@@ -35,13 +35,13 @@ void botsArmy::getInfo()
 	for (int i = 0; i < name.length(); i++)
 		std::cout << name[i];
 	std::cout << std::endl;
-	std::cout << "Урон:             ";
+	std::cout << "Damage:      ";
 	std::cout << getUnitDamage() << std::endl;
-	std::cout << "Кол-во:           ";
+	std::cout << "Number:      ";
 	std::cout << getNumber() << std::endl;
-	std::cout << "Здоровье:         ";
+	std::cout << "HP:          ";
 	std::cout << getUnitHP() << std::endl;
-	std::cout << "Остаток здоровья: ";
+	std::cout << "HP remained: ";
 	std::cout << getDamagedUnitHP() << std::endl;
 	std::cout << std::endl;
 
@@ -56,7 +56,7 @@ void botsArmy::beAttacked(int damage)
 
 	if (totalHP <= 0)
 	{
-		std::cout << getNumber() << " " << name << " погибло\n\n";
+		std::cout << getNumber() << " " << name << " died\n\n";
 		number = 0;
 		damagedUnitHP = 0;
 		return;
@@ -72,7 +72,7 @@ void botsArmy::beAttacked(int damage)
 		number = totalHP / getUnitHP();
 		damagedUnitHP = getUnitHP();
 	}
-	std::cout << killedUnits << " " << name << " погибло\n\n";
+	std::cout << killedUnits << " " << name << " died\n\n";
 	return;
 };
 
@@ -125,14 +125,14 @@ archers::archers(
 	int x,
 	int y
 	) : botsArmy(
-	"Archers",			// имя юнита
-	'A',				// аббревиатура
-	30,					// кол-во юнитов
-	15,					// здоровье одного юнита
-	15,					// остаток здоровья раненного юнита (изначально 15)
-	10,					// урон одного юнита
-	x,					// строка позиции
-	y)					// столбец позиции
+	"Archers",			// name
+	'A',				// abbreviation
+	30,					// number of units
+	15,					// one unit's HP
+	15,					// HP remained
+	10,					// one unit's damage
+	x,					
+	y)					
 {
 	this->x = x;
 	this->y = y;
@@ -148,14 +148,14 @@ dwarfs::dwarfs(
 	int x,
 	int y
 	) : botsArmy(
-	"Dwarfs",			// имя юнита
-	'D',				// аббревиатура
-	50,					// кол-во юнитов
-	20,					// здоровье одного юнита
-	20,					// остаток здоровья раненного юнита (изначально 40)
-	4,					// урон одного юнита
-	x,					// строка позиции
-	y)					// столбец позиции
+	"Dwarfs",			// name
+	'D',				// abbreviation
+	50,					// number of units
+	20,					// one unit's HP
+	20,					// HP remained
+	4,					// one unit's damage
+	x,					
+	y)					
 {
 	this->x = x;
 	this->y = y;
@@ -171,14 +171,14 @@ centaurs::centaurs(
 	int x,
 	int y
 	) :botsArmy(
-	"Centaurs",			// имя юнита
-	'C',				// аббревиатура
-	70,					// кол-во юнитов
-	10,					// здоровье одного юнита
-	10,					// остаток здоровья раненного юнита (изначально 40)
-	3,					// урон одного юнита
-	x,					// строка позиции
-	y)					// столбец позиции
+	"Centaurs",			// name
+	'C',				// abbreviation
+	70,					// number of units
+	10,					// one unit's HP
+	10,					// HP remained
+	3,					// one unit's damage
+	x,					
+	y)					
 {
 	this->x = x;
 	this->y = y;
