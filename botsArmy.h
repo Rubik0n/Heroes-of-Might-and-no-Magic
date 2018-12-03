@@ -4,7 +4,7 @@
 
 class botsArmyInterface
 {
-	virtual void attack() = 0;
+	virtual int attack() = 0;
 	virtual void move(int x, int y) = 0;
 	virtual void getInfo() = 0;
 	virtual void beAttacked(int damage) = 0;
@@ -23,117 +23,22 @@ public:
 		int unitDamage,
 		int x,
 		int y
-		)
-	{
-		this->name = name;
-		this->abbreviation = abbreviation;
-		this->number = number;
-		this->unitHP = unitHP;
-		this->damagedUnitHP = damagedUnitHP;
-		this->unitDamage = unitDamage;
-		this->x = x;
-		this->y = y;
-	};
+		);
 
-	void move(int x, int y)
-	{
-		this->x = x;		// если не занята клетка
-		this->y = y;
+	void move(int x, int y);
+	void getInfo();
+	void beAttacked(int damage);
 
-		return;
-	};
 
-	void getInfo()
-	{
-		for (int i = 0; i < name.length(); i++)
-			std::cout << name[i];
-		std::cout << std::endl;
-		std::cout << "Урон:             ";
-		std::cout << getUnitDamage() << std::endl;
-		std::cout << "Кол-во:           ";
-		std::cout << getNumber() << std::endl;
-		std::cout << "Здоровье:         ";
-		std::cout << getUnitHP() << std::endl;
-		std::cout << "Остаток здоровья: ";
-		std::cout << getDamagedUnitHP() << std::endl;
-		std::cout << std::endl;
-
-		return;
-	};
-
-	void beAttacked(int damage)
-	{
-		int totalHP = (getNumber() - 1) * getUnitHP() + getDamagedUnitHP();
-		totalHP -= damage;
-		int killedUnits = damage / getUnitHP();
-
-		if (totalHP <= 0)
-		{
-			std::cout << getNumber() << " " << name << " погибло\n\n";
-			number = 0;
-			damagedUnitHP = 0;
-			return;
-		}
-
-		if (totalHP % getUnitHP() != 0)
-		{
-			number = totalHP / getUnitHP() + 1;
-			damagedUnitHP = totalHP % getUnitHP();
-		}
-		else
-		{
-			number = totalHP / getUnitHP();
-			damagedUnitHP = getUnitHP();
-		}
-		std::cout << killedUnits << " " << name << " погибло\n\n";
-		return;
-	};
-
-	bool isDead()
-	{
-		if (getNumber() <= 0)
-			return true;
-		else
-			return false;
-	};
-
-	int getNumber()
-	{
-		return number;
-	};
-
-	char getAbbreviation()
-	{
-		return abbreviation;
-	};
-
-	int getUnitHP()
-	{
-		return unitHP;
-	};
-
-	int getDamagedUnitHP()
-	{
-		return damagedUnitHP;
-	};
-
-	int getUnitDamage()
-	{
-		return unitDamage;
-	};
-
-	int getX()
-	{
-		return x;
-	};
-
-	int getY()
-	{
-		return y;
-	};
-
-	
-	
+	bool isDead();
+	int getNumber();
+	char getAbbreviation();
+	int getUnitHP();
+	int getDamagedUnitHP();
+	int getUnitDamage();
+	int getX();
+	int getY();
+		
 private:
 
 	std::string name;
@@ -152,31 +57,10 @@ private:
 class archers : public botsArmy
 {
 public:
-	archers(
-		int x,
-		int y
-		) :botsArmy(
-		"Archers",			// имя юнита
-		'A',				// аббревиатура
-		30,					// кол-во юнитов
-		15,					// здоровье одного юнита
-		15,					// остаток здоровья раненного юнита (изначально 15)
-		10,					// урон одного юнита
-		x,					// строка позиции
-		y)					// столбец позиции
-	{
-		this->x = x;
-		this->y = y;
-	}
-
-	void attack()
-	{
-
-		return;
-	};
-
 	
-
+	archers(int x, int y);
+	int attack();
+	
 private:
 	int x, y;
 };
@@ -184,28 +68,9 @@ private:
 class dwarfs :public botsArmy
 {
 public:
-	dwarfs(
-		int x,
-		int y
-		) :botsArmy(
-		"Dwarfs",			// имя юнита
-		'D',				// аббревиатура
-		50,					// кол-во юнитов
-		20,					// здоровье одного юнита
-		20,					// остаток здоровья раненного юнита (изначально 40)
-		4,					// урон одного юнита
-		x,					// строка позиции
-		y)					// столбец позиции
-	{
-		this->x = x;
-		this->y = y;
-	}
-
-	void attack()
-	{
-
-		return;
-	};
+	
+	dwarfs(int x, int y);
+	int attack();
 
 private:
 	int x, y;
@@ -214,29 +79,10 @@ private:
 class centaurs :public botsArmy
 {
 public:
-	centaurs(
-		int x,
-		int y
-		) :botsArmy(
-		"Centaurs",			// имя юнита
-		'C',				// аббревиатура
-		70,					// кол-во юнитов
-		10,					// здоровье одного юнита
-		10,					// остаток здоровья раненного юнита (изначально 40)
-		3,					// урон одного юнита
-		x,					// строка позиции
-		y)					// столбец позиции
-	{
-		this->x = x;
-		this->y = y;
-	}
-
-	void attack()
-	{
-
-		return;
-	};
-
+	
+	centaurs(int x,	int y);
+	int attack();
+	
 private:
 	int x, y;
 };
