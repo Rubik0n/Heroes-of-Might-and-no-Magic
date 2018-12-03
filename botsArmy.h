@@ -42,15 +42,15 @@ public:
 private:
 
 	std::string name;
-	char abbreviation;		// аббревиатура
+	char abbreviation;		// abbreviation
 
-	int number;				// кол-во юнитов в отряде
-	int unitHP;				// здоровье одного юнита
-	int damagedUnitHP;		// остаток здоровья раненного юнита (изначально 40)
+	int number;				// number of units
+	int unitHP;				// one unit's HP
+	int damagedUnitHP;		// HP remained
 
-	int unitDamage;			// урон одного юнита
+	int unitDamage;			// one unit's damage
 
-	int x, y;				// позиция		
+	int x, y;				// position		
 
 };
 
