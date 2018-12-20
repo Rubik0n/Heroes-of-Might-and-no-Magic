@@ -25,6 +25,7 @@ army::army(
 int army::dealDamage()
 {
 	int totalDamage = getNumber() * getUnitDamage();
+	std::cout << "Damage dealed: " << totalDamage << std::endl;
 	return totalDamage;
 };
 
@@ -71,17 +72,24 @@ void army::wait()
 
 void army::getInfo()
 {
-	for (int i = 0; i < name.length(); i++)
-		std::cout << name[i];
-	std::cout << std::endl;
-	std::cout << "Damage:      ";
-	std::cout << getUnitDamage() << std::endl;
-	std::cout << "Number:      ";
-	std::cout << getNumber() << std::endl;
-	std::cout << "HP:          ";
-	std::cout << getUnitHP() << std::endl;
-	std::cout << "HP remained: ";
-	std::cout << getDamagedUnitHP() << std::endl;
+	if (!isDead())
+	{
+		std::cout << name;
+		std::cout << std::endl;
+		std::cout << "Damage:      ";
+		std::cout << getUnitDamage() << std::endl;
+		std::cout << "Number:      ";
+		std::cout << getNumber() << std::endl;
+		std::cout << "HP:          ";
+		std::cout << getUnitHP() << std::endl;
+		std::cout << "HP remained: ";
+		std::cout << getDamagedUnitHP() << std::endl;
+		std::cout << "Position: ";
+		std::cout << "(" << getX() << ", " << getY() << ")\n";
+	}
+	else
+		std::cout << name << " are dead!\n";
+	
 	std::cout << std::endl;
 
 	return;
@@ -91,6 +99,11 @@ void army::sayWhoWeAre()
 {
 	std::cout << "We r the greatest army!!!\n";
 	return;
+};
+
+std::string army::getName()
+{
+	return name;
 };
 
 bool army::isDead()
@@ -142,7 +155,7 @@ vampireLords::vampireLords(
 	int x,
 	int y
 	) :army(
-	"Vampire Lords",	// name
+	"VampireLords",		// name
 	'V',				// abbreviation
 	number,				// number of units
 	40,					// one unit's HP

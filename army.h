@@ -33,6 +33,7 @@ public:
 	void getInfo();
 	void sayWhoWeAre();
 
+	std::string getName();
 	bool isDead();
 	int getNumber();
 	char getAbbreviation();
